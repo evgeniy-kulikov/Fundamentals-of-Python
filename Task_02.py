@@ -7,7 +7,7 @@ from random import randint
 # Результат: [12, 44, 4, 10, 78, 123].
 
 first_list = [randint(1, 300) for i in range(12)]
-print(' Исходный список:\n', first_list)
+print(f'Исходный список:\n{first_list}')
 
 edition_list = [el for i, el in enumerate(first_list) if first_list[i - 1] < first_list[i] and i > 0]
-print(' Измененный список:\n', edition_list)
+print(f'Измененный список:\n{edition_list}')
