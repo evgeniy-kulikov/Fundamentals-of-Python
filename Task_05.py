@@ -1,7 +1,6 @@
-"""Homework for the Lesson_04"""
-
 from functools import reduce
 
+"""Homework for the Lesson_04"""
 """ Task 05 """
 # Реализовать формирование списка, используя функцию range() и возможности генератора.
 # В список должны войти четные числа от 100 до 1000 (включая границы).
