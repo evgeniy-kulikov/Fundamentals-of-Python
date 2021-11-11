@@ -6,20 +6,20 @@ from sys import argv
 # В расчете необходимо использовать формулу: (выработка в часах * ставка в час) + премия.
 # Для выполнения расчета для конкретных значений необходимо запускать скрипт с параметрами.
 
-script_name, work_hours, employee_rate, premium = argv
+""" Вариант с пользовательским вводом данных"""
 
-work_hours = float(work_hours)
-employee_rate = float(employee_rate)
-premium = int(premium)
-
-print('Часовая выработка сотрудника: ', work_hours)
-print('Размер часовой ставки сотрудника: ', employee_rate)
-print('Размер премии сотрудника: ', premium)
+script_name = argv
 
 
 def salary_employee():
-    result = work_hours * employee_rate + premium
-    print(f'Заработная плата сотрудника составляет:  {result}')
+    try:
+        work_hours = float(input('Часовая выработка сотрудника: '))
+        employee_rate = float(input('Размер часовой ставки сотрудника: '))
+        premium = float(input('Размер премии сотрудника: '))
+        result = work_hours * employee_rate + premium
+        print(f'Заработная плата сотрудника составляет:  {result}')
+    except ValueError:
+        return print('Необходимо ввести числовое значение!')
 
 
 salary_employee()
