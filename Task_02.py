@@ -1,16 +1,15 @@
-"""Homework for the Lesson_02"""
-
 """ Task 02 """
-# 2. Для списка реализовать обмен значений соседних элементов, т.е. Значениями обмениваются элементы с
-# индексами 0 и 1, 2 и 3 и т.д. При нечетном количестве элементов последний сохранить на своем месте.
-# Для заполнения списка элементов необходимо использовать функцию input().
-
-n = int(input('Укажите количество элементов списка: '))
-list_rev = []
-for i in range(n):
-    list_rev.append(input(f'{i + 1}-й элемент: '))
-# list_rev = [1, 'a', 2, 'b', 3, 'c', 4, 'd', 5, 'e', 'finish']  # заготовка списка
-print(list_rev)
-for i in range(0, len(list_rev) - 1, 2):
-    list_rev[i], list_rev[i + 1] = list_rev[i + 1], list_rev[i]
-print(list_rev)
+# 2. Пользователь вводит время в секундах.
+# Переведите время в часы, минуты и секунды и выведите в формате чч:мм:сс.
+num_second = int(input('Введите количество секунд: '))
+whole_sec = num_second % 60
+whole_min = num_second // 60 % 60
+whole_hour = num_second // 3_600 % 60
+whole_hour_day = num_second // 3_600 % 60 % 24
+whole_day = num_second // 86_400 % 24
+# Вывод в формате чч:мм:сс
+if num_second < 86400:
+    print(f'{whole_hour:02}:{whole_min:02}:{whole_sec:02}')
+# Вывод в формате дд.чч:мм:сс
+else:
+    print(f'{whole_day:02}:{whole_hour_day:02}:{whole_min:02}:{whole_sec:02}')

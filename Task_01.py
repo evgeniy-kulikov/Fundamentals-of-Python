@@ -1,12 +1,18 @@
-"""Homework for the Lesson_02"""
-
 """ Task 01 """
-# 1. Создать список и заполнить его элементами различных типов данных.
-# Реализовать скрипт проверки типа данных каждого элемента.
-# Использовать функцию type() для проверки типа.
-# Элементы списка указать явно, в программе.
-
-my_list = [7, 5, 3, 'This is', 'my list', True, None]
-print(f'Variable "my_list" is of type {type(my_list)}')
-for i in range(0, len(my_list)):
-    print(f'Element "{my_list[i]}" is of type {type(my_list[i])}')
+# 1. Поработайте с переменными, создайте несколько, выведите на экран,
+# запросите у пользователя несколько чисел и строк и сохраните в переменные, выведите на экран.
+num_int = 25
+num_float = 12.5
+str_shar = 'any text'
+str_num = '2021'
+boolean = True
+print(num_int + num_float + int(str_num))
+print(str_shar, str_num, boolean)
+name = input('Введите свое имя: ')
+age = int(input('Введите свой возраст: '))
+print(f'Здравствуйте {name}. Вы родились в {2021 - age} году.')
+car = input('У вас есть личный автотранспорт? Введите да/нет: ')
+if car == 'да':
+    print(f'{name}, вы можете самостоятельно путешествовать.')
+else:
+    print(f'{name}, вы можете использовать городской транспорт.')
