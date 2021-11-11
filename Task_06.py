@@ -12,20 +12,22 @@ from itertools import count, cycle
 # Во втором также необходимо предусмотреть условие, при котором повторение элементов списка будет прекращено.
 
 num = int(input('Введите стартовое число: '))
+list_num = []
 for el in count(num):
     if el > num + 10:
-        print('Конец цикла\n')
         break
     else:
-        print(el)
+        list_num.append(el)
+print(list_num)
 
 c = 0
-my_list = [True, 'ABC', 123, None]
-print(f'Исходный список: {my_list}')
+list_str = []
+my_list = ['one', 2, 'three', 4]
+print(f'Исходный список:\n{my_list}')
 for el in cycle(my_list):
     if c > 10:
-        print('Конец цикла\n')
         break
     else:
-        print(el)
+        list_str.append(el)
         c += 1
+print(f'Измененный список:\n{list_str}')
