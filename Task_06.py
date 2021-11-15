@@ -25,10 +25,8 @@ with open('Task_06_text.txt', 'r', encoding='utf-8') as my_file:
                 for elem in i:
                     if elem.isdigit():
                         num += elem  # если символ является числом то формируем его в виде строки
-                        print(num)
                     else:
                         break  # если символ не является числом то пропускаем его
                 hours += int(num)  # складываем все часы по отдельному предмету
         sum_hours.update({data_line[0].strip(':'): hours})  # strip(':') - для красоты убираем лишние ":"
 print(sum_hours)
-
