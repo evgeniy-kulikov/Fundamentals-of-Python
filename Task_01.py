@@ -1,6 +1,5 @@
-""" Homework for the Lesson_05 """
 from time import sleep
-
+""" Homework for the Lesson_05 """
 """ Task 01 """
 # Создать класс TrafficLight (светофор) и определить у него один атрибут color (цвет) и метод running (запуск).
 # Атрибут реализовать как приватный. В рамках метода реализовать переключение светофора в режимы:
@@ -13,19 +12,28 @@ from time import sleep
 
 
 class TrafficLight:
-    __color = ['Красный', 'Желтый', 'Зеленый']
+    colors = ['Красный', 'Желтый', 'Зеленый']
+    delay = [7, 2, 4]
+    change_count = 5
+
+    def __init__(self):
+        self.__colors = 'Зеленый'
 
     def running(self):
-        i = 0
-        while i < 3:
-            print(f'Свет светофора: {TrafficLight.__color[i]}')
-            if i == 0:
-                sleep(7)
-            elif i == 1:
-                sleep(5)
-            elif i == 2:
-                sleep(3)
-            i += 1
+        while True:
+            try:
+                self.change_count = int(input('Сколько раз светофор должен отработать полный цикл? : '))
+                break
+            except ValueError:
+                print('Ожидаем целое число...')
+
+        while self.change_count != 0:
+            for i in self.colors:
+                self.__colors = i
+                print(f'Свет светофора: {self.__colors} ({self.delay[self.colors.index(self.__colors)]} сек.)')
+                sleep(self.delay[self.colors.index(self.__colors)])
+            self.change_count -= 1
+        print('Светофор выключен')
 
 
 TrafficLight = TrafficLight()
