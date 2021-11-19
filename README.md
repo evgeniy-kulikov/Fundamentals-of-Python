@@ -1,2 +1,4 @@
-# Fundamentals-of-Python-2
+# Fundamentals-of-Python
 Основы языка Python
+Домашнее задание к уроку 6 
+"Объектно-ориентированное программирование"
