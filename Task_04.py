@@ -55,6 +55,12 @@ class PoliceCar(Car):
     def __init__(self, speed, color, name):
         super().__init__(speed, color, name, True)  # Переопределяем констркутор для изменения свойства "is_police"
 
+    def is_police(self):
+        if self.is_police:
+            return f'is from police department'
+        else:
+            return f'is not from police department'
+
 
 car_town = TownCar(80, 'Blue', 'Opel')
 car_work = WorkCar(50, 'Green', 'Renault')
@@ -65,6 +71,8 @@ car_town.show_speed()
 car_town.speed = 60  # изменяем скорость
 car_town.show_speed()
 print(f'Car model "{car_work.name}", color "{car_work.color}"\n')
-car_police.turn('left\n')
+car_police.turn('left\n')  # изменение направления движения
+print(f'Is {car_police.name} a police car?\nanswer: {car_police.is_police}')  # проверка принадлежности к полиции
+print(f'Is {car_work.name} a police car?\nanswer: {car_work.is_police}\n')
 car_sport.go()
 car_sport.show_speed()
