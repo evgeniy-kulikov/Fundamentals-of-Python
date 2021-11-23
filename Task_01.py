@@ -13,32 +13,31 @@
 
 
 class Matrix:
-    def __init__(self, list_1, list_2):
-        self.list_1 = list_1
-        self.list_2 = list_2
+    def __init__(self, matrix):
+        self.matrix = matrix
 
-    def __add__(self):
-        matr = [[0, 0, 0],
-                [0, 0, 0],
-                [0, 0, 0]]
+    def __str__(self):  # формируем матрицу из вложенных списков чисел
+        row_matrix = ''
+        for i in range(len(self.matrix)):
+            row_matrix = row_matrix + '\t'.join(map(str, self.matrix[i])) + '\n'
+        return row_matrix
 
-        for i in range(len(self.list_1)):
-
-            for j in range(len(self.list_2[i])):
-                matr[i][j] = self.list_1[i][j] + self.list_2[i][j]
-        return str('\n'.join(['\t'.join([str(j) for j in i]) for i in matr]))
-
-    def __str__(self):
-        return str('\n'.join(['\t'.join([str(j) for j in i]) for i in matr]))
-
-
-my_matrix = Matrix([[5, 18, 11],
-                    [6, 17, 23],
-                    [41, 50, 9]],
-                   [[45, 8, 2],
-                    [6, 7, 93],
-                    [24, 5, 97]])
-# result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    def __add__(self, other):  # сложение сформированных матриц
+        if len(self.matrix) != len(other.matrix):  # проверка на одинаковую размерность матриц
+            return f'Матрицы отличаются размерностью'
+        res = self.matrix
+        for i in range(len(self.matrix)):
+            for k in range(len(self.matrix[i])):
+                res[i][k] = self.matrix[i][k] + other.matrix[i][k]
+        return Matrix(res)
 
 
-print(my_matrix.__add__())
+l1 = [[1, 2, 4], [3, 4, 5], [5, 6, 6]]
+l2 = [[11, 21, 41], [31, 41, 51], [51, 61, 61]]
+mtr_1 = Matrix(l1)
+mtr_2 = Matrix(l2)
+print(f'{mtr_1}\t+')
+print(mtr_2)
+print('\t=\n')
+result = mtr_1 + mtr_2
+print(result)
