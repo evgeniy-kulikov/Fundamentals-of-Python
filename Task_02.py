@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 """ Homework for the Lesson_07 """
 """ Task 02 """
 
@@ -11,46 +12,53 @@
 # реализовать абстрактные классы для основных классов проекта, проверить на практике работу декоратора @property.
 
 
-class Textil:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
+class Clothes(ABC):  # родительский класс (для Coat & Suit) создается на базе абстрактного класса
+    @abstractmethod
+    def expense(self):  # функция вычисления (будет переопределена в дочерних классах)
+        pass
 
-    def get_square_c(self):
-        return self.width / 6.5 + 0.5
 
-    def get_square_j(self):
-        return self.height * 2 + 0.3
+class Coat(Clothes):  # пальто
+    def __init__(self, v):
+        self.v = v  # размер пальто
 
     @property
-    def get_sq_full(self):
-        return str(f'Площадь общая ткани \n'
-                   f' {(self.width / 6.5 + 0.5) + (self.height * 2 + 0.3)}')
+    def expense(self):  # переопределяем метод "expense" класса "Clothes"
+        return self.v / 6.5 + 0.5  # расход ткани на одно пальто (заданного размера)
+
+    def sum_exp_coat(self, sum_coat):  # общий расход ткани партии пальто
+        num = 0  # начальное значение счетчика пальто
+        for coat in sum_coat:
+            num += coat.expense
+        return num
 
 
-class Coat(Textil):
-    def __init__(self, width, height):
-        super().__init__(width, height)
-        self.square_c = round(self.width / 6.5 + 0.5)
+class Suit(Clothes):  # костюм
+    def __init__(self, h):
+        self.h = h  # рост костюма
 
-    def __str__(self):
-        return f'Площадь на пальто {self.square_c}'
+    @property
+    def expense(self):  # переопределяем метод "expense" класса "Clothes"
+        return self.h * 2 + 0.3  # расход ткани на один костюм (заданного роста)
 
-
-class Jacket(Textil):
-    def __init__(self, width, height):
-        super().__init__(width, height)
-        self.square_j = round(self.height * 2 + 0.3)
-
-    def __str__(self):
-        return f'Площадь на костюм {self.square_j}'
+    def sum_expense(self, sum_suit):  # общий расход ткани партии костюмов
+        num = 0  # начальное значение счетчика костюмов
+        for suit in sum_suit:
+            num += suit.expense
+        return num
 
 
-coat = Coat(2, 4)
-jacket = Jacket(1, 2)
-print(coat)
-print(jacket)
-print(coat.get_sq_full)
-print(jacket.get_sq_full)
-print(jacket.get_square_c())
-print(jacket.get_square_j())
+suit_1 = Suit(1.54)
+suit_2 = Suit(1.68)
+suit_3 = Suit(1.76)
+suit_4 = Suit(1.94)
+sum_unit = [suit_1, suit_2, suit_3, suit_4]
+print(f'Расход ткани на один костюм (рост {suit_1.h}): {round(suit_1.expense, 2)} кв.м')
+print(f'Расход ткани на партию костюмов: {round(suit_1.sum_expense(sum_unit), 2)}\n')
+coat_1 = Coat(46)
+coat_2 = Coat(48)
+coat_3 = Coat(50)
+coat_4 = Coat(52)
+sum_coat = [coat_1, coat_2, coat_3, coat_4]
+print(f'Расход ткани на одно пальто (размер {coat_1.v}) {round(coat_1.expense, 2)} кв.м')
+print(f'Расход ткани на партию пальто: {round(coat_1.sum_exp_coat(sum_coat), 2)}')
