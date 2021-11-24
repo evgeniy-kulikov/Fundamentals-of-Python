@@ -33,37 +33,38 @@
 
 
 class Cell:
-    def __init__(self, quantity):
-        self.quantity = int(quantity)
+    def __init__(self, amount):
+        self.amount = int(amount)
 
     def __str__(self):
-        return f'Результат операции {self.quantity * "*"}'
+        return f'{self.amount * "*"}'
 
-    def __add__(self, other):
-        return Cell(self.quantity + other.quantity)
+    def __add__(self, other):  # Сложение
+        return Cell(self.amount + other.amount)
 
-    def __sub__(self, other):
-        return self.quantity - other.quantity if (self.quantity - other.quantity) > 0 else print('Отрицательно!')
+    def __sub__(self, other):  # Вычитание
+        return self.amount - other.amount if (self.amount - other.amount) > 0 else print('Отрицательная разность!')
 
-    def __mul__(self, other):
-        return Cell(int(self.quantity * other.quantity))
+    def __mul__(self, other):  # Умножение
+        return Cell(int(self.amount * other.amount))
 
-    def __truediv__(self, other):
-        return Cell(round(self.quantity // other.quantity))
+    def __truediv__(self, other):  # Деление
+        return Cell(round(self.amount // other.amount))
 
-    def make_order(self, cells_in_row):
+    def make_order(self, cells_in_row):  # формирование строки вида *****\n*****\n*****...
         row = ''
-        for i in range(int(self.quantity / cells_in_row)):
+        for i in range(int(self.amount / cells_in_row)):
             row += f'{"*" * cells_in_row} \\n'
-        row += f'{"*" * (self.quantity % cells_in_row)}'
+        row += f'{"*" * (self.amount % cells_in_row)}'
         return row
 
 
 cells1 = Cell(33)
 cells2 = Cell(9)
-print(cells1)
-print(cells1 + cells2)
-print(cells2 - cells1)
-print(cells2.make_order(5))
-print(cells1.make_order(10))
-print(cells1 / cells2)
+print(f'Количество ячеек 1-й клетки:\t{cells1}')
+print(f'Количество ячеек 2-й клетки:\t{cells2}')
+print(f'Сумма ячеек 2-х клеток:\t\t\t{cells1 + cells2}')
+print(f'Разность ячеек 2-х клеток:\t\t{cells2 - cells1}')
+print(f'Остаток от деления 2-х клеток\t{cells1 / cells2}')
+print(f'Формирование ячеек клетки:\t\t{cells2.make_order(5)}')
+print(f'Формирование ячеек клетки:\t\t{cells1.make_order(10)}')
