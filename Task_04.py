@@ -8,77 +8,31 @@
 # В классах-наследниках реализовать параметры, уникальные для каждого типа оргтехники.
 
 
-class Sklad:
+class OfficeStorage:  # Склад оргтехники. Общее описание
     def __init__(self):
-        self._dict = {}
-
-    def add_to(self, equipment):
-        ''' добавляем в словарь обьект по его названию, в значении
-        будет список экземпляров этого оборудования'''
-        self._dict.setdefault(equipment.group_name(), []).append(equipment)
-
-    def extract(self, name):
-        ''' извлекаем из значения обьект по названию группы.
-        дальше можно расширить поиск по серии, марки или еще чему либо'''
-        if self._dict[name]:
-            self._dict.setdefault(name).pop(0)
+        pass
 
 
-class Equipment:
-    def __init__(self, name, make, year):
+class OfficeEquipment:  # Оргтехника. Родительский класс для дочерних данного оборудования
+    def __init__(self, name, series, amount, price):
         self.name = name
-        self.make = make
-        self.year = year
-        self.group = self.__class__.__name__
-
-    def group_name(self):
-        return f'{self.group}'
-
-    def __repr__(self):
-        return f'{self.name} {self.make} {self.year}'
-
-
-class Printer(Equipment):
-    def __init__(self, series, name, make, year):
-        super().__init__(name, make, year)
         self.series = series
+        self.amount = amount
+        self.price = price
+        self.group = {'Производитель': self.name, 'Модель': self.series, 'Количество': self.amount, 'Цена': self.price}
 
-    def __repr__(self):
-        return f'{self.name} {self.series} {self.make} {self.year}'
-
-    def action(self):
-        return 'Печатает'
-
-
-class Scaner(Equipment):
-    def __init__(self, name, make, year):
-        super().__init__(name, make, year)
-
-    def action(self):
-        return 'Сканирует'
+    def group_name(self):  # Вид оборудования (в данной реализации - дочерние классы (OfficeEquipment))
+        return f'Вид оборудования: {self.group}'
 
 
-class Xerox(Sklad):
-    def __init__(self, name, make, year):
-        super().__init__(name, make, year)
-
-    def action(self):
-        return 'Копирует'
+ee = OfficeStorage()
+ee.name = 'jvjkv'
+print(ee.name)
 
 
-sklad = Sklad()
-# создаем объект и добавляем
-scaner = Scaner('hp', '321', 90)
-sklad.add_to(scaner)
-scaner = Scaner('hp', '311', 97)
-sklad.add_to(scaner)
-scaner = Scaner('hp', '330', 99)
-sklad.add_to(scaner)
-printer = Printer('e-320', 'sony', 126, 2018)
-sklad.add_to(printer)
-# выводим склад
-print(sklad._dict)
-# забираем с склада и выводим склад
-sklad.extract('Scaner')
-print()
-print(sklad._dict)
+
+
+
+
+
+
