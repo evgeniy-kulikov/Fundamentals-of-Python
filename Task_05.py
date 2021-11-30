@@ -1,4 +1,4 @@
-from datetime import datetime, time
+from datetime import datetime
 
 """ Homework for the Lesson_08 """
 """ Task 05 """

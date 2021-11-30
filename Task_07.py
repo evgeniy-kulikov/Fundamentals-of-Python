@@ -45,7 +45,7 @@ print(f'Разность z1 и z2 равна: {calc.sub(Complex(1, -2), Complex(
 print(f'Произведение z1 и z2 равно: {calc.mul(Complex(1, -2), Complex(3, 4))}')
 
 
-print('\nПроверка с использованием встроенного модуля "cmath" ')
+print('\nПроверка с использованием встроенного модуля')
 print(f'z1 = {complex(1, -2)}')
 print(f'z2 = {complex(3, 4)}')
 print(f'Сумма z1 и z2 равна: {complex(1, -2) + complex(3, 4)}')
